@@ -7,17 +7,55 @@
  *
  * @author Jorge Aguirre
  */
-public abstract class JuegoAhorcadoBase implements JuegoAhorcado{
+public abstract class JuegoAhorcadoBase implements JuegoAhorcado {
     protected String palabraSecreta;
     protected String palabraActual;
     protected int intentos;
+
+    public JuegoAhorcadoBase() {
+        this.intentos = 6; // Número estándar de intentos en el ahorcado
+    }
+
+
+    public String getPalabraSecreta() {
+        return palabraSecreta;
+    }
+
+    public String getPalabraActual() {
+        return palabraActual;
+    }
+
+
+    public int getIntentos() {
+        return intentos;
+    }
+
+    protected void decrementarIntentos() {
+        if (intentos > 0) {
+            intentos--;
+        }
+    }
+
+    protected void inicializarPalabraActual() {
+        
+    }
+
+
     
-     public abstract void actualizarPalabraActual(char letra);
-    
-   
-    public abstract boolean verificarLetra(char letra);
-    
-    
-    public abstract boolean hasGanado();
-    
+    @Override
+    public abstract void inicializarPalabraSecreta();
+
+
+    @Override
+    public abstract void jugar();
+
+
+    protected abstract void actualizarPalabraActual(char letra);
+
+
+    protected abstract boolean verificarLetra(char letra);
+
+
+    protected abstract boolean hasGanado();
 }
+
