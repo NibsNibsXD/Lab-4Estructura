@@ -8,34 +8,63 @@
  * @author Jorge Aguirre
  */
 public class JuegoAhorcadoFijo extends JuegoAhorcadoBase {
-    
+
     public JuegoAhorcadoFijo(String palabraSecreta) {
-        //constructor
+        this.palabraSecreta = palabraSecreta.toUpperCase(); 
+        inicializarPalabraSecreta();
     }
-    
+
     @Override
     public void inicializarPalabraSecreta() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        inicializarPalabraActual();
+        this.intentos = 6; 
     }
 
     @Override
     public void jugar() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
     }
 
     @Override
-    public void actualizarPalabraActual(char letra) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    protected void actualizarPalabraActual(char letra) {
+        letra = Character.toUpperCase(letra);
+        StringBuilder nuevaPalabra = new StringBuilder(palabraActual);
+        for (int i = 0; i < palabraSecreta.length(); i++) {
+            if (palabraSecreta.charAt(i) == letra) {
+                nuevaPalabra.setCharAt(i, letra);
+            }
+        }
+        palabraActual = nuevaPalabra.toString();
     }
 
     @Override
-    public boolean verificarLetra(char letra) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    protected boolean verificarLetra(char letra) {
+        letra = Character.toUpperCase(letra);
+        boolean encontrada = palabraSecreta.indexOf(letra) >= 0;
+        if (encontrada) {
+            actualizarPalabraActual(letra);
+        } else {
+            decrementarIntentos();
+        }
+        return encontrada;
     }
 
     @Override
-    public boolean hasGanado() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    protected boolean hasGanado() {
+        return !palabraActual.contains("_");
     }
-    
+
+    public boolean procesarLetra(char letra) {
+        return verificarLetra(letra);
+    }
+
+    public boolean verificarGano() {
+        return hasGanado();
+    }
+
+    public boolean verificarPerdio() {
+        return intentos <= 0 && !hasGanado();
+    }
 }
+
+

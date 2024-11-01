@@ -13,9 +13,8 @@ public abstract class JuegoAhorcadoBase implements JuegoAhorcado {
     protected int intentos;
 
     public JuegoAhorcadoBase() {
-        this.intentos = 6; // Número estándar de intentos en el ahorcado
+        this.intentos = 6; 
     }
-
 
     public String getPalabraSecreta() {
         return palabraSecreta;
@@ -24,7 +23,6 @@ public abstract class JuegoAhorcadoBase implements JuegoAhorcado {
     public String getPalabraActual() {
         return palabraActual;
     }
-
 
     public int getIntentos() {
         return intentos;
@@ -37,25 +35,26 @@ public abstract class JuegoAhorcadoBase implements JuegoAhorcado {
     }
 
     protected void inicializarPalabraActual() {
-        
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < palabraSecreta.length(); i++) {
+            sb.append('_');
+        }
+        palabraActual = sb.toString();
     }
 
-
-    
     @Override
     public abstract void inicializarPalabraSecreta();
-
 
     @Override
     public abstract void jugar();
 
-
     protected abstract void actualizarPalabraActual(char letra);
-
 
     protected abstract boolean verificarLetra(char letra);
 
-
     protected abstract boolean hasGanado();
+    
+    public abstract boolean procesarLetra(char letra);
+    public abstract boolean verificarGano();
+    public abstract boolean verificarPerdio();
 }
-
