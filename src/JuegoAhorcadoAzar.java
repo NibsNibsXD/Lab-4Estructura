@@ -13,6 +13,9 @@ import java.util.List;
 public class JuegoAhorcadoAzar extends JuegoAhorcadoBase{
     private List<String> palabrasPosibles;
     
+    public JuegoAhorcadoAzar(List<String> palabrasPosibles) {
+        //constructor
+    }
     
     @Override
     public void inicializarPalabraSecreta() {

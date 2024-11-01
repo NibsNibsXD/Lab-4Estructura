@@ -8,7 +8,11 @@
  * @author Jorge Aguirre
  */
 public class JuegoAhorcadoFijo extends JuegoAhorcadoBase {
-
+    
+    public JuegoAhorcadoFijo(String palabraSecreta) {
+        //constructor
+    }
+    
     @Override
     public void inicializarPalabraSecreta() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
